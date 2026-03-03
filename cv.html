@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>portfolio | CV</title>
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .cv-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .cv-section {
+      margin-bottom: 60px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cv-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-bottom: 15px;
+      border-bottom: 2px solid;
+      border-image: linear-gradient(90deg, rgba(255,255,255,0.3), transparent) 1;
+    }
+
+    .cv-item {
+      margin-bottom: 25px;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid;
+      border-image: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1)) 1;
+      transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cv-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .cv-item:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(8px);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+    }
+
+    .cv-item:hover::before {
+      opacity: 1;
+    }
+
+    .cv-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cv-item-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .cv-item-meta {
+      font-size: 0.85rem;
+      opacity: 0.65;
+      font-style: italic;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cv-item-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      opacity: 0.85;
+      margin-top: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .cv-intro {
+      text-align: center;
+      margin-bottom: 80px;
+      padding: 50px 30px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+    }
+
+    .cv-intro::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.03), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .cv-intro h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cv-intro p {
+      font-size: 1.05rem;
+      opacity: 0.8;
+      max-width: 650px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      line-height: 1.8;
+    }
+
+    .cv-intro p a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .cv-intro p a:hover {
+      color: rgba(255, 255, 255, 1);
+      border-bottom-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .soft-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .soft-skill-card {
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .soft-skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .soft-skill-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(255, 255, 255, 0.12);
+    }
+
+    .soft-skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .soft-skill-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .soft-skill-card p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 14px 40px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .download-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(255, 255, 255, 0.15);
+    }
+
+    .download-btn:hover::before {
+      left: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <img src="logo/logo2.png" alt="BDCODE logo">
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-link" href="index.html#home">home</a>
+      <a class="nav-link" href="index.html#progetti">Progetti</a>
+      <a class="nav-link" href="index.html#recensioni">Recensioni</a>
+      <a class="nav-link" href="skills.html">Skills</a>
+      <a class="nav-link" href="cv.html">CV</a>
+    </nav>
+
+    <div class="header-actions">
+      <button
+        class="contact-btn"
+        onclick="document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })">
+        contattami
+      </button>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div style="height: 24px;"></div>
+
+    <div class="cv-container">
+
+      <!-- INTRO -->
+      <div class="cv-intro">
+        <h1>DAVIDE BELPIETRO</h1>
+        <p>Junior Front-End Developer  </p>
+        <p style="margin-top: 15px; font-size: 0.95rem;">
+          📍 Brescia, Italia | 📧 helloexample@gmail.com | 📱 +39 3272506073<br>
+          <a href="https://github.com/belpietrodavide01-beep" style="color: inherit; opacity: 0.8;">GitHub</a> • 
+          <a href="https://www.linkedin.com/in/davide-belpietro-063433359" style="color: inherit; opacity: 0.8;">LinkedIn</a> • 
+          <a href="https://www.instagram.com/__belpietrodavide__" style="color: inherit; opacity: 0.8;">Instagram</a>
+        </p>
+      </div>
+
+      <!-- CHI SONO -->
+      <div class="cv-section">
+        <h3>Chi Sono</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7; opacity: 0.85;">
+          Sono uno sviluppatore web appassionato, motivato dal desiderio di imparare e creare interfacce intuitive e performanti. 
+          Credo che il codice pulito, l'attenzione al dettaglio e l'esperienza utente siano fondamentali per realizzare progetti memorabili.
+          <br><br>
+          Mi piace risolvere problemi complessi con soluzioni eleganti, collaborare con altri e stare aggiornato sulle tendenze del web development.
+        </p>
+      </div>
+
+      <!-- COMPETENZE TECNICHE -->
+      <div class="cv-section">
+        <h3>Competenze Tecniche</h3>
+        
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <div class="cv-item-title">Front-End Development</div>
+          </div>
+          <p class="cv-item-description">
+            HTML5, CSS3, SCSS, JavaScript (ES6+), React, Next.js, responsive design, mobile-first approach.
+          </p>
+          <div class="skills-grid">
+            <div class="skill-tag">HTML5</div>
+            <div class="skill-tag">CSS3 / SCSS</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">React</div>
+            <div class="skill-tag">Next.js</div>
+            <div class="skill-tag">Responsive</div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <div class="cv-item-title">Strumenti & Metodologie</div>
+          </div>
+          <p class="cv-item-description">
+            Git & GitHub, VS Code, DevTools, testing, debugging, performance optimization, accessibility (WCAG).
+          </p>
+          <div class="skills-grid">
+            <div class="skill-tag">Git</div>
+            <div class="skill-tag">GitHub</div>
+            <div class="skill-tag">VS Code</div>
+            <div class="skill-tag">DevTools</div>
+            <div class="skill-tag">Accessibility</div>
+            <div class="skill-tag">SEO</div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <div class="cv-item-title">Design & UX</div>
+          </div>
+          <p class="cv-item-description">
+            Principi di UI/UX, micro-interazioni, animazioni CSS, user research
+          </p>
+          <div class="skills-grid">
+            <div class="skill-tag">UI/UX</div>
+            <div class="skill-tag">Animazioni</div>
+            <div class="skill-tag">Prototipazione</div>
+            <div class="skill-tag">User Experience</div>
+            <div class="skill-tag">Performance</div>
+            <div class="skill-tag">Figma (base)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPETENZE SOFT -->
+      <div class="cv-section">
+        <h3>Competenze </h3>
+        
+        <div class="soft-skills">
+          <div class="soft-skill-card">
+            <h4>🎯 Problem Solving</h4>
+            <p>Affronto problemi complessi in modo metodico, scomponendoli in passaggi logici per trovare soluzioni efficienti.</p>
+          </div>
+          
+          <div class="soft-skill-card">
+            <h4>🚀 Autonomia</h4>
+            <p>Lavoro bene in autonomia, auto-organizzandomi, </p>
+          </div>
+          
+          <div class="soft-skill-card">
+            <h4>📚 Apprendimento </h4>
+            <p>Sono sempre motivato a imparare nuove tecnologie, metodologie e best practices per crescere come sviluppatore.</p>
+          </div>
+          
+          <div class="soft-skill-card">
+            <h4>💬 Comunicazione</h4>
+            <p>Mi esprimo chiaramente, ascolto attivamente e riesco a spiegare concetti tecnici in modo comprensibile.</p>
+          </div>
+          
+          <div class="soft-skill-card">
+            <h4>🤝 Collaborazione</h4>
+            <p>Lavoro bene in team, condivido idee, supporto i colleghi e apprezzo il feedback per migliorare insieme.</p>
+          </div>
+          
+          <div class="soft-skill-card">
+            <h4>⏱️ Gestione del Tempo</h4>
+            <p>Organizzo il lavoro per priorità, rispetto le scadenze e mantengo un equilibrio tra qualità e efficienza.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ISTRUZIONE -->
+      <div class="cv-section">
+        <h3>Istruzione</h3>
+        
+        
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <div class="cv-item-title">Formazione Web Development</div>
+            <div class="cv-item-meta">formazione | 2026 - Presente</div>
+          </div>
+          <p class="cv-item-description">
+            Corso online start2impact, con focus su HTML, CSS, JavaScript, React e best practices di sviluppo web. Progetti pratici e feedback continuo.
+          </p>
+        </div>
+      </div>
+
+      <!-- PROGETTI -->
+     
+
+      <!-- INTERESSI & VALORI -->
+      <div class="cv-section">
+        <h3>Interessi & Valori</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7; opacity: 0.85;">
+          ✨ Mi affascina il design minimalista e le micro-interazioni che rendono un sito "vivo".
+          <br>
+          🔍 Sono curioso di web accessibility, performance optimization e SEO.
+          <br>
+          🌱 Credo nell'apprendimento permanente e nella condivisione di conoscenza con la community.
+          <br>
+          💼 Aspiro a lavorare in un ambiente dove posso contribuire a progetti significativi, imparare da developer esperti e crescere nel tempo.
+        </p>
+      </div>
+
+      <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <button class="contact-btn" onclick="window.print()">
+          Scarica CV (Stampa)
+        </button>
+        
+      </div>
+
+    </div>
+
+  </main>
+
+ 
+
+  
+</body>
+</html>
